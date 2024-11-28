@@ -1,0 +1,35 @@
+wp.blocks.registerBlockVariation( 'core/query', {
+	name: 'wd4d-featured-posts',
+	title: '(WD4D) Featured posts',
+	description: 'Display a list of your featured posts',
+	isActive: [ 'namespace' ],
+	allowedControls: [],
+	attributes: {
+		namespace: 'wd4d-featured-posts',
+		query: {
+			perPage: 3,
+			pages: 0,
+			offset: 0,
+			postType: 'post',
+			order: 'desc',
+			orderBy: 'date',
+			author: '',
+			search: '',
+			exclude: [],
+			sticky: '',
+			inherit: false,
+			taxQuery: { post_tag: [ 3 ] },
+			parents: [],
+			format: [],
+		},
+	},
+	innerBlocks: [
+		[
+			'core/post-template',
+			{},
+			[ [ 'core/post-title' ], [ 'core/post-excerpt' ] ],
+		],
+		[ 'core/query-pagination' ],
+		[ 'core/query-no-results' ],
+	],
+} );
