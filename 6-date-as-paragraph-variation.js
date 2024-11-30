@@ -66,16 +66,18 @@ const withDateControls = createHigherOrderComponent( ( BlockEdit ) => {
 			} );
 		}
 
-		const date = useMemo(
-			() =>
-				parseWithAttributeSchema( content, {
+		const date = useMemo( () => {
+			try {
+				return parseWithAttributeSchema( content, {
 					type: 'string',
 					source: 'attribute',
 					selector: 'time',
 					attribute: 'datetime',
-				} ),
-			[ content ]
-		);
+				} );
+			} catch ( e ) {
+				return undefined;
+			}
+		}, [ content ] );
 
 		return (
 			<>
